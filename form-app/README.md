@@ -1,59 +1,71 @@
-# FormApp
+# 🚀 AppCore - Formularz rejestracyjny
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Projekt to aplikacja typu SPA wykonana w Angularze 21. Służy do rejestracji klientów indywidualnych oraz firm za pomocą wieloetapowego formularza.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🌐 Opis projektu
+
+Aplikacja składa się z kilku sekcji i funkcjonalności, które pozwalają na sprawne wprowadzanie danych i zarządzanie zgodami. Całość jest responsywna i dostosowana do urządzeń mobilnych.
+
+Główne elementy strony:
+- 🔝 **Navbar** – menu nawigacyjne z logo i przełącznikiem trybu ciemnego.
+- 📑 **Stepper** – formularz podzielony na kroki (Dane klienta oraz Zgody).
+- 🌓 **Tryb ciemny** – obsługa kolorystyki Dark Mode oparta o zmienne CSS.
+- ♿ **Standard WCAG 2.2** – obsługa czytników ekranu oraz nawigacji klawiaturą.
+- 📱 **Menu mobilne** – panel boczny (Drawer) dla użytkowników telefonów.
+- 👥 **O nas** – podstrona informacyjna.
+- 📞 **Stopka** – sekcja z prawami autorskimi i linkami społecznościowymi.
+
+---
+
+## 🎨 UI / UX
+
+### 🔹 Design
+Wygląd opiera się na stonowanej palecie barw (odcienie Slate i Indigo). Do stylowania wykorzystano **Tailwind CSS 4** oraz komponenty **PrimeNG**.
+
+Co zostało wdrożone:
+- **System zmiennych CSS**: Kolory są trzymane w osobnym pliku, co ułatwia ich zmianę w całej aplikacji.
+- **Reaktywne przyciski**: Kolorystyka przycisków zmienia się automatycznie, gdy formularz zostanie poprawnie wypełniony.
+- **Stylowanie PrimeNG**: Komponenty biblioteki zostały zmodyfikowane tak, aby pasowały do reszty projektu.
+
+### 🔹 Wykorzystane komponenty
+Użyto następujących elementów PrimeNG:
+- `p-stepper` (nawigacja krokowa)
+- `p-select` (wybór typu klienta)
+- `p-checkbox` (pola wyboru w sekcji zgód)
+- `p-drawer` (menu boczne)
+
+---
+
+## 🛠️ Technologie
+
+
+| Technologia | Zastosowanie |
+|------------|--------------|
+| **Angular 21** | Główna architektura w trybie **Zoneless**. |
+| **Signals** | Zarządzanie stanem i odświeżanie widoku. |
+| **TypeScript** | Silne typowanie i modele danych. |
+| **Reactive Forms** | Obsługa logiki formularzy i walidacji. |
+| **Tailwind 4** | Układ strony i responsywność. |
+
+---
+
+## ⚙️ Logika i rozwiązania techniczne
+
+- **Walidacja zależna od typu**: Formularz dynamicznie zmienia wymagane pola w zależności od wyboru między osobą prywatną a firmą.
+- **Unie dyskryminatywne**: Modele danych w TypeScript są zaprojektowane tak, aby pola specyficzne dla firmy nie występowały w danych osoby i odwrotnie.
+- **Dostępność cyfrowa**: Użycie atrybutów `aria-describedby` i `aria-invalid` pozwala na poprawną obsługę błędów przez czytniki ekranu.
+- **Licznik zgód**: Reaktywny mechanizm informujący o liczbie brakujących zgód wymaganych do zapisania formularza.
+
+---
+
+## 📦 Instalacja i uruchomienie
 
 ```bash
-ng serve
+# Instalacja potrzebnych paczek
+npm install
+
+# Uruchomienie aplikacji lokalnie
+ng serve -o
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
