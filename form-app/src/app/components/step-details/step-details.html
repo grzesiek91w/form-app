@@ -1,0 +1,110 @@
+<div [formGroup]="formService.form.controls.step1" class="w-full flex flex-col animate-fade-in">
+  
+  <!-- Typ klienta -->
+  <div class="field-group">
+    <label for="type">Typ klienta</label>
+    <p-select 
+      id="type" 
+      formControlName="type" 
+      [options]="clientTypes" 
+      [class.input-error]="isInvalid('type')"
+      aria-required="true"
+      [attr.aria-invalid]="isInvalid('type')"
+      [attr.aria-describedby]="isInvalid('type') ? 'type-error' : null">
+    </p-select>
+    @if (isInvalid('type')) {
+      <small class="error-message italic" id="type-error">Wybór typu klienta jest wymagany</small>
+    }
+  </div>
+
+  <!-- Sekcja dla OSOBY -->
+  @if (currentType === 'PERSON') {
+    <div class="field-group">
+      <label for="firstName">Imię</label>
+      <input 
+        pInputText 
+        id="firstName" 
+        formControlName="firstName" 
+        placeholder="np. Jan" 
+        [class.input-error]="isInvalid('firstName')"
+        aria-required="true"
+        [attr.aria-invalid]="isInvalid('firstName')"
+        [attr.aria-describedby]="isInvalid('firstName') ? 'firstName-error' : null" />
+      @if (isInvalid('firstName')) {
+        <small class="error-message italic" id="firstName-error">Imię jest wymagane (min. 2 znaki)</small>
+      }
+    </div>
+
+    <div class="field-group">
+      <label for="lastName">Nazwisko</label>
+      <input 
+        pInputText 
+        id="lastName" 
+        formControlName="lastName" 
+        placeholder="np. Kowalski" 
+        [class.input-error]="isInvalid('lastName')"
+        aria-required="true"
+        [attr.aria-invalid]="isInvalid('lastName')"
+        [attr.aria-describedby]="isInvalid('lastName') ? 'lastName-error' : null" />
+      @if (isInvalid('lastName')) {
+        <small class="error-message italic" id="lastName-error">Nazwisko jest wymagane (min. 2 znaki)</small>
+      }
+    </div>
+  }
+
+  <!-- Sekcja dla FIRMY -->
+  @if (currentType === 'COMPANY') {
+    <div class="field-group">
+      <label for="companyName">Nazwa firmy</label>
+      <input 
+        pInputText 
+        id="companyName" 
+        formControlName="companyName" 
+        placeholder="Pełna nazwa firmy" 
+        [class.input-error]="isInvalid('companyName')"
+        aria-required="true"
+        [attr.aria-invalid]="isInvalid('companyName')"
+        [attr.aria-describedby]="isInvalid('companyName') ? 'companyName-error' : null" />
+      @if (isInvalid('companyName')) {
+        <small class="error-message italic" id="companyName-error">Nazwa firmy jest wymagana (min. 2 znaki)</small>
+      }
+    </div>
+
+    <div class="field-group">
+      <label for="nip">NIP</label>
+      <input 
+        pInputText 
+        id="nip" 
+        formControlName="nip" 
+        placeholder="1234567890" 
+        [class.input-error]="isInvalid('nip')"
+        aria-required="true"
+        [attr.aria-invalid]="isInvalid('nip')"
+        [attr.aria-describedby]="isInvalid('nip') ? 'nip-error' : null" />
+      @if (isInvalid('nip')) {
+        <small class="error-message italic" id="nip-error">Wymagane 10 cyfr NIP</small>
+      }
+    </div>
+  }
+
+  <!-- E-mail (Wspólny) -->
+  <div class="field-group">
+    <label for="email">Adres e-mail</label>
+    <div class="email-wrapper">
+      <i class="pi pi-envelope" aria-hidden="true"></i>
+      <input 
+        pInputText 
+        id="email" 
+        formControlName="email" 
+        type="email" 
+        placeholder="test@gmail.com" 
+        [class.input-error]="isInvalid('email')"
+        aria-required="true"
+        [attr.aria-invalid]="isInvalid('email')"
+        [attr.aria-describedby]="isInvalid('email') ? 'email-error' : null" />
+    </div>
+    @if (isInvalid('email')) {
+      <small class="error-message italic" id="email-error">Wprowadź poprawny adres e-mail</small>
+    }
+  </div>
+</div>

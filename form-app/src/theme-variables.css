@@ -1,0 +1,58 @@
+:root {
+  /* TRYB JASNY */
+  --bg-app: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #1e293b;
+
+  --text-muted: #475569;
+
+  --border-color: #f1f5f9;
+
+  --input-border: #94a3b8;
+
+  --primary: #334155;
+
+  --success: #166534;
+
+  --error-text: #991b1b;
+  --error-bg: #fef2f2;
+  --error-border: #fecaca;
+
+  --consent-active-bg: #f1f5f9;
+  --shadow-card: rgba(15, 23, 42, 0.08);
+
+  --btn-next-invalid: #94a3b8;
+  --btn-next-valid: #2563eb;
+
+  --btn-save-invalid: #64748b;
+  --btn-save-valid: #166534;
+}
+
+html.my-app-dark {
+  /* TRYB CIEMNY */
+  --bg-app: #0f172a;
+  --bg-card: #1e293b;
+  --text-main: #f1f5f9;
+
+  --text-muted: #94a3b8;
+
+  --border-color: #334155;
+  --input-border: #475569;
+
+  --primary: #94a3b8;
+
+  --success: #34d399;
+
+  --error-text: #f19999;
+  --error-bg: rgba(153, 27, 27, 0.2);
+  --error-border: rgba(153, 27, 27, 0.4);
+
+  --consent-active-bg: rgba(148, 163, 184, 0.1);
+  --shadow-card: rgba(0, 0, 0, 0.4);
+
+  --btn-next-invalid: #334155;
+  --btn-next-valid: #60a5fa;
+
+  --btn-save-invalid: #475569;
+  --btn-save-valid: #34d399;
+}

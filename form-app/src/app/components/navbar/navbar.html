@@ -1,0 +1,90 @@
+<header class="navbar-header">
+    <nav class="navbar" aria-label="Menu główne">
+      <div class="nav-wrapper">
+        
+        <!-- LOGO -->
+        <a routerLink="/" class="logo" aria-label="AppCore - Strona główna">
+          <i class="pi pi-bolt logo-icon" aria-hidden="true"></i>
+          <span class="logo-text">AppCore</span>
+        </a>
+  
+        <!-- LINKI DESKTOP -->
+        <div class="nav-right-group">
+          
+          <ul class="nav-list-desktop" role="list">
+            @for (item of navItems; track item.path) {
+              <li>
+                <a [routerLink]="item.path" 
+                   routerLinkActive="active" 
+                   [routerLinkActiveOptions]="{exact: true}">
+                  {{ item.label }}
+                </a>
+              </li>
+            }
+          </ul>
+  
+          <!-- PRZYCISKI AKCJI -->
+          <div class="nav-actions">
+            <button (click)="themeService.toggleTheme()" 
+                    class="icon-btn" 
+                    [attr.aria-label]="themeService.isDarkMode() ? 'Przełącz na tryb jasny' : 'Przełącz na tryb ciemny'">
+              <i [class]="themeService.isDarkMode() ? 'pi pi-sun' : 'pi pi-moon'" aria-hidden="true"
+              [style.color]="themeService.isDarkMode() ? '#fbbf24' : '#94a3b8'" 
+              style="font-size: 1.2rem;"></i>
+            </button>
+  
+            <button (click)="isMenuVisible.set(true)" 
+                    class="icon-btn mobile-only" 
+                    aria-label="Otwórz menu nawigacyjne"
+                    [attr.aria-expanded]="isMenuVisible()" type="button">
+              <i class="pi pi-bars" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+  
+      </div>
+    </nav>
+  
+    <!-- MENU MOBILNE (Drawer) -->
+    <p-drawer 
+  [(visible)]="isMenuVisible" 
+  position="right" 
+  [showCloseIcon]="false" 
+  styleClass="custom-drawer"
+  appendTo="body">
+  
+  <div class="drawer-content">
+    <!-- NAGŁÓWEK -->
+    <div class="drawer-header">
+      <span class="drawer-brand">Menu</span>
+      <button (click)="isMenuVisible.set(false)" class="drawer-close-btn" aria-label="Zamknij menu" type="button">
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+
+    <!-- NAWIGACJA -->
+    <nav class="drawer-nav" aria-label="Menu mobilne">
+      <ul class="mobile-menu-list">
+        @for (item of navItems; track item.path) {
+          <li>
+            <a [routerLink]="item.path" 
+               routerLinkActive="active" 
+               (click)="isMenuVisible.set(false)"
+               [routerLinkActiveOptions]="{exact: true}">
+              <span class="link-label">{{ item.label }}</span>
+              <i class="pi pi-arrow-right icon-arrow" aria-hidden="true"></i>
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <!-- STOPKA MENU -->
+    <div class="drawer-footer">
+      <p>&copy; 2025 AppCore</p>
+      <div class="footer-line"></div>
+    </div>
+  </div>
+</p-drawer>
+  </header>
+  

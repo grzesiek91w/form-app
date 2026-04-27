@@ -1,0 +1,84 @@
+<div class="form-card animate-fade-in" style="position: relative;">
+
+  <!-- NAGŁÓWEK FORMULARZA -->
+  <header class="header-separator">
+    <div class="custom-stepper-header">
+      <div class="step-circle" [class.active]="activeIndex() >= 0">
+        @if (activeIndex() > 0) { 
+          <i class="pi pi-check" style="font-size: 10px;"></i> 
+        } @else { 1 }
+      </div>
+      <div class="step-line" [class.active]="activeIndex() > 0"></div>
+      <div class="step-circle" [class.active]="activeIndex() === 1">2</div>
+    </div>
+
+    <h1 style="font-size: 18px; font-weight: 900; color: inherit; margin: 0;">
+      {{ activeIndex() === 0 ? 'Dane klienta' : 'Zgody i oświadczenia' }}
+    </h1>
+    <p style="color: #94a3b8; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-top: 2px;">
+      Krok {{ activeIndex() + 1 }} z 2
+    </p>
+  </header>
+
+  <!-- TREŚĆ FORMULARZA -->
+  <form [formGroup]="formService.form" style="flex: 1; display: flex; flex-direction: column;">
+    <p-stepper [value]="activeIndex()" class="hide-stepper-header">
+      
+      <!-- KROK 1: DANE -->
+      <p-step-panel [value]="0">
+        <ng-template pTemplate="content" let-activateCallback="activateCallback">
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <app-step-details></app-step-details>
+            
+            <!-- Fragment przycisku w Kroku 1 -->
+<div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+  <p-button 
+    label="Dalej" 
+    icon="pi pi-arrow-right" 
+    iconPos="right" 
+    (onClick)="nextStep(activateCallback)"
+    [styleClass]="isStep1Valid() ? 'btn-next btn-active' : 'btn-next'" />
+</div>
+
+          </div>
+        </ng-template>
+      </p-step-panel>
+
+      <!-- KROK 2: ZGODY -->
+      <p-step-panel [value]="1">
+        <ng-template pTemplate="content" let-activateCallback="activateCallback">
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <app-step-consents [consents]="(consents$ | async) || []"></app-step-consents>
+            
+            <!-- Pasek brakujących zgód -->
+            @if (requiredMissingCount() > 0) {
+              <div class="missing-info-bar">
+                <i class="pi pi-exclamation-circle"></i>
+                <span>Zaznacz jeszcze {{ requiredMissingCount() }} wymagane zgody (*)</span>
+              </div>
+            }
+
+            <!-- Nawigacja dolna -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-bottom: 8px;">
+              <p-button 
+                label="Wstecz" 
+                [plain]="true" 
+                severity="secondary" 
+                (onClick)="prevStep(activateCallback)" />
+              
+              <!-- Fragment przycisku w Kroku 2 -->
+              <p-button 
+                label="Zapisz dane" 
+                severity="success" 
+                icon="pi pi-check" 
+                (onClick)="onSave()"
+                [styleClass]="isFormValid() ? 'btn-save btn-active' : 'btn-save'" />
+
+            </div>
+          </div>
+        </ng-template>
+      </p-step-panel>
+
+    </p-stepper>
+  </form>
+</div>
