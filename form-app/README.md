@@ -63,6 +63,9 @@ Użyto następujących elementów PrimeNG:
 ## 📦 Instalacja i uruchomienie
 
 ```bash
+# Link do uruchomionej aplikacji
+https://form-app-six-psi.vercel.app
+
 # Instalacja potrzebnych paczek
 npm install
 
